@@ -59,18 +59,7 @@ pipeline
                 echo 'Run container...'
                 script
                 {
-                    bat 'docker run --name mqreceiveprc mqreceiveprc:5.20002.3.03'
-                }
-            }
-        }
-        stage('Stop container')
-        {
-            steps
-            {
-                echo 'Stop container...'
-                script
-                {
-                    bat 'docker stop mqreceiveprc'
+                    bat 'docker container create --name mqreceiveprc mqreceiveprc:5.20002.3.03'
                 }
             }
         }
