@@ -41,6 +41,17 @@ pipeline
                 }
             }
         }
+        stage('Delete container')
+        {
+            steps
+            {
+                echo 'Delete container...'
+                script
+                {
+                    bat 'docker rm -f mqreceiveprc'
+                }
+            }
+        }
         stage('Run container')
         {
             steps
@@ -49,6 +60,39 @@ pipeline
                 script
                 {
                     bat 'docker run --name mqreceiveprc mqreceiveprc:5.20002.3.03'
+                }
+            }
+        }
+        stage('Stop container')
+        {
+            steps
+            {
+                echo 'Stop container...'
+                script
+                {
+                    bat 'docker stop mqreceiveprc'
+                }
+            }
+        }
+        stage('Copy file')
+        {
+            steps
+            {
+                echo 'Copy file...'
+                script
+                {
+                    bat 'docker cp ./AppSetting/Master mqreceiveprc:/app'
+                }
+            }
+        }
+        stage('Start container')
+        {
+            steps
+            {
+                echo 'Copy file...'
+                script
+                {
+                    bat 'docker start mqreceiveprc'
                 }
             }
         }
