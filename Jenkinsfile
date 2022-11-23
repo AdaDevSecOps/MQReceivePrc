@@ -74,17 +74,6 @@ pipeline
                 }
             }
         }
-        stage('Read file')
-        {
-            steps
-            {
-                echo 'Copy file...'
-                script
-                {
-                    bat 'docker exec -it mqreceiveprc bash'
-                }
-            }
-        }
         stage('Start container')
         {
             steps
