@@ -41,5 +41,16 @@ pipeline
                 }
             }
         }
+        stage('Run container')
+        {
+            steps
+            {
+                echo 'Run container...'
+                script
+                {
+                    sh "docker run --name mqreceiveprc mqreceiveprc:5.20002.3.03"
+                }
+            }
+        }
     }
 }
