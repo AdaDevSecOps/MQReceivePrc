@@ -70,7 +70,7 @@ pipeline
                 echo 'Copy file...'
                 script
                 {
-                    bat 'docker cp ./AppSetting/Master mqreceiveprc:/app'
+                    bat 'docker cp ./AppSetting/Master/ mqreceiveprc:/app'
                 }
             }
         }
