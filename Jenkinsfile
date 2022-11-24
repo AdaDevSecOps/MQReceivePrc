@@ -48,7 +48,9 @@ pipeline
                 echo 'Delete container...'
                 script
                 {
-                    bat 'docker rm -f mqreceiveprc'
+                    bat 'docker rm -f mqreceiveprc-master'
+                    bat 'docker rm -f mqreceiveprc-sale'
+                    bat 'docker rm -f mqreceiveprc-doc'
                 }
             }
         }
@@ -59,7 +61,9 @@ pipeline
                 echo 'Run container...'
                 script
                 {
-                    bat 'docker container create --name mqreceiveprc mqreceiveprc:5.20002.3.03'
+                    bat 'docker container create --name mqreceiveprc-master mqreceiveprc:5.20002.3.03'
+                    bat 'docker container create --name mqreceiveprc-sale mqreceiveprc:5.20002.3.03'
+                    bat 'docker container create --name mqreceiveprc-doc mqreceiveprc:5.20002.3.03'
                 }
             }
         }
@@ -70,7 +74,9 @@ pipeline
                 echo 'Copy file...'
                 script
                 {
-                    bat 'docker cp ./Appsetting/Master/. mqreceiveprc:/app'
+                    bat 'docker cp ./Appsetting/Master/. mqreceiveprc-master:/app'
+                    bat 'docker cp ./Appsetting/Sale/. mqreceiveprc-sale:/app'
+                    bat 'docker cp ./Appsetting/Doc/. mqreceiveprc-doc:/app'
                 }
             }
         }
@@ -81,7 +87,9 @@ pipeline
                 echo 'Copy file...'
                 script
                 {
-                    bat 'docker start mqreceiveprc'
+                    bat 'docker start mqreceiveprc-master'
+                    bat 'docker start mqreceiveprc-sale'
+                    bat 'docker start mqreceiveprc-doc'
                 }
             }
         }
