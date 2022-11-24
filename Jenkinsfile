@@ -41,19 +41,6 @@ pipeline
                 }
             }
         }
-        stage('Delete container')
-        {
-            steps
-            {
-                echo 'Delete container...'
-                script
-                {
-                    bat 'docker rm -f mqreceiveprc-master'
-                    bat 'docker rm -f mqreceiveprc-sale'
-                    bat 'docker rm -f mqreceiveprc-doc'
-                }
-            }
-        }
         stage('Run container')
         {
             steps
